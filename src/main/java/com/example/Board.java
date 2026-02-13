@@ -41,7 +41,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
 	// Logical and graphical representations of board
 	private final Square[][] board;
     private final GameWindow g;
- 
+ //IM HERE!!!
     //contains true if it's white's turn.
     private boolean whiteTurn;
 
