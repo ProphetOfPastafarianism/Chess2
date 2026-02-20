@@ -59,13 +59,44 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         this.g = g;
         board = new Square[8][8];
         setLayout(new GridLayout(8, 8, 0, 0));
-
+        
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
 
         //TO BE IMPLEMENTED FIRST
-     
-      //for (.....)  
+        
+        // Where's the "add" met
+        int wob2=2;
+        int wob=2;
+        for (int i=0; i<8;i++){
+            for (int j=0;j<8;j++){
+                if (wob2%2==0){
+                    if (wob%2==0){
+                      board[i][j]= new Square(this, true, 0, 0);
+                    
+                    }
+                      if (wob%2!=0){
+                       board[i][j]= new Square(this, false, 0,0);
+                    
+                  }
+                wob++;
+                this.add(board[i][j]);
+                }
+                if (wob2%2!=0){
+                    if (wob%2==0){
+                      board[i][j]= new Square(this, false, 0,0);
+                    
+                    }
+                      if (wob%2!=0){
+                       board[i][j]= new Square(this, true, 0,0);
+                    
+                  }
+                wob++;
+                this.add(board[i][j]);
+                }
+       
+    } 
+     wob2++; 
 //        	populate the board with squares here. Note that the board is composed of 64 squares alternating from 
 //        	white to black.
         
@@ -81,15 +112,15 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         whiteTurn = true;
 
     }
-
+}
     
 	//set up the board such that the black pieces are on one side and the white pieces are on the other.
 	//since we only have one kind of piece for now you need only set the same number of pieces on either side.
 	//it's up to you how you wish to arrange your pieces.
     void initializePieces() {
     	
-    	// board[0][0].put(new Piece(true, path+ RESOURCES_WKING_PNG));
-        
+    	board[2][3].put(new Piece(true, RESOURCES_WKING_PNG));
+        board[5][3].put(new Piece(false, RESOURCES_BKING_PNG));
 
     }
 
