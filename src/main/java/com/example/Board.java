@@ -72,11 +72,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
             for (int j=0;j<8;j++){
                 if (wob2%2==0){
                     if (wob%2==0){
-                      board[i][j]= new Square(this, true, 0, 0);
+                      board[i][j]= new Square(this, true, i, j);
                     
                     }
-                      if (wob%2!=0){
-                       board[i][j]= new Square(this, false, 0,0);
+                     else{
+                       board[i][j]= new Square(this, false, i,j);
                     
                   }
                 wob++;
@@ -84,11 +84,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
                 }
                 if (wob2%2!=0){
                     if (wob%2==0){
-                      board[i][j]= new Square(this, false, 0,0);
+                      board[i][j]= new Square(this, false, i,j);
                     
                     }
-                      if (wob%2!=0){
-                       board[i][j]= new Square(this, true, 0,0);
+                     else{
+                       board[i][j]= new Square(this, true, i,j);
                     
                   }
                 wob++;
@@ -100,7 +100,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
 //        	populate the board with squares here. Note that the board is composed of 64 squares alternating from 
 //        	white to black.
         
-        
+        }
         initializePieces();
         
 
@@ -111,16 +111,21 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
 
         whiteTurn = true;
 
-    }
+    
 }
     
 	//set up the board such that the black pieces are on one side and the white pieces are on the other.
 	//since we only have one kind of piece for now you need only set the same number of pieces on either side.
 	//it's up to you how you wish to arrange your pieces.
     void initializePieces() {
-    	
-    	board[2][3].put(new Piece(true, RESOURCES_WKING_PNG));
-        board[5][3].put(new Piece(false, RESOURCES_BKING_PNG));
+    	for(Square[] sq: board){
+            for(Square s: sq){
+                System.out.println(s);
+            }
+        }
+
+    	board[0][0].put(new Piece(true, RESOURCES_WKING_PNG));
+        board[5][5].put(new Piece(false, RESOURCES_BKING_PNG));
 
     }
 
