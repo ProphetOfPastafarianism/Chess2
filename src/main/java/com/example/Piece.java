@@ -64,9 +64,8 @@ public class Piece {
     public ArrayList<Square> getLegalMoves(Board b, Square start){
         ArrayList<Square> ret = new ArrayList<>();
         if (start.getCol()<7){
-          Square right=b.getSquareArray()[start.getRow()][start.getCol()+7];
+          Square right=b.getSquareArray()[start.getRow()][start.getCol()+1];
             if (right.isOccupied() && right.getOccupyingPiece().getColor()!=color);
-            ret[]+right;
             return ret;
          }
     	return null;
