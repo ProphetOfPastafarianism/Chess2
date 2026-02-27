@@ -65,6 +65,7 @@ public class Piece {
         ArrayList<Square> ret = new ArrayList<>();
         if (start.getCol()<7){
           Square right=b.getSquareArray()[start.getRow()][start.getCol()+1];
+          ret.add(right);
             if (right.isOccupied() && right.getOccupyingPiece().getColor()!=color);
             return ret;
          }
