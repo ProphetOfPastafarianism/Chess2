@@ -51,9 +51,10 @@ public class Piece {
     //return a list of every square that is "controlled" by this piece. A square is controlled
     //if the piece capture into it legally.
     public ArrayList<Square> getControlledSquares(Square[][] board, Square start) {
+        Square a;
         ArrayList<Square> cm = new ArrayList<Square>();
         Piece currPiece=start.getOccupyingPiece();
-        currPiece.getLegalMoves();
+        currPiece.getLegalMoves(this, a);
 
        
      return null;
