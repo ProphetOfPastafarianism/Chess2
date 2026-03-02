@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 
 //you will need to implement two functions in this file.
 public class Piece {
@@ -50,7 +51,11 @@ public class Piece {
     //return a list of every square that is "controlled" by this piece. A square is controlled
     //if the piece capture into it legally.
     public ArrayList<Square> getControlledSquares(Square[][] board, Square start) {
+        ArrayList<Square> cm = new ArrayList<Square>();
+        Piece currPiece=start.getOccupyingPiece();
+        currPiece.getLegalMoves();
 
+       
      return null;
     }
     
@@ -62,13 +67,29 @@ public class Piece {
     //please note that your piece must have some sort of logic. Just being able to move to every square on the board is not
     //going to score any points.
     public ArrayList<Square> getLegalMoves(Board b, Square start){
-        ArrayList<Square> ret = new ArrayList<>();
-        if (start.getCol()<7){
-          Square right=b.getSquareArray()[start.getRow()][start.getCol()+1];
-          ret.add(right);
-            if (right.isOccupied() && right.getOccupyingPiece().getColor()!=color);
-            return ret;
-         }
-    	return null;
+       ArrayList<Square> moves = new ArrayList<Square>();
+
+        for (int i=0; i+start.getCol()>=0;i--){
+          Square horz=b.getSquareArray()[start.getRow()][start.getCol()-i];
+          if (horz.isOccupied() && horz.getOccupyingPiece().getColor()!=color);
+            moves.add(horz);
+        }
+        for (int i=0; i+start.getRow()>=0;i--){
+          Square vert=b.getSquareArray()[start.getRow()][start.getCol()-i];
+          if (vert.isOccupied() && vert.getOccupyingPiece().getColor()!=color);
+            moves.add(vert);
+        }
+        for (int i=0; i+start.getCol()<=7;i++){
+          Square horz=b.getSquareArray()[start.getRow()][start.getCol()+i];
+          if (horz.isOccupied() && horz.getOccupyingPiece().getColor()!=color);
+            moves.add(horz);
+        }
+        for (int i=0; i+start.getRow()<=7;i++){
+          Square vert=b.getSquareArray()[start.getRow()+i][start.getRow()];
+          if (vert.isOccupied() && vert.getOccupyingPiece().getColor()!=color);
+            moves.add(vert);
+        }
+         
+    	return moves;
     }
 }
