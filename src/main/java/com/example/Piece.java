@@ -54,7 +54,8 @@ public class Piece {
         Square a;
         ArrayList<Square> cm = new ArrayList<Square>();
         Piece currPiece=start.getOccupyingPiece();
-        currPiece.getLegalMoves(this, a);
+        currPiece.getLegalMoves(, start);
+        
 
        
      return null;
