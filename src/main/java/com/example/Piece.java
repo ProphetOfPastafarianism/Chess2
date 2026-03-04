@@ -76,18 +76,21 @@ public class Piece {
           if (!horz.isOccupied() || horz.getOccupyingPiece().getColor()!=color);
             moves.add(horz);
         }
+        //up
         for (int i=0; i+start.getRow()>=0;i--){
           Square vert=b.getSquareArray()[start.getRow()+i][start.getCol()];
           if (!vert.isOccupied() || vert.getOccupyingPiece().getColor()!=color);
             moves.add(vert);
         }
+        //right
         for (int i=0; i+start.getCol()<=7;i++){
           Square horz=b.getSquareArray()[start.getRow()][start.getCol()+i];
           if (!horz.isOccupied() || horz.getOccupyingPiece().getColor()!=color);
             moves.add(horz);
         }
+        //down
         for (int i=0; i+start.getRow()<=7;i++){
-          Square vert=b.getSquareArray()[start.getRow()+i][start.getRow()];
+          Square vert=b.getSquareArray()[start.getRow()+i][start.getCol()];
           if (!vert.isOccupied() || vert.getOccupyingPiece().getColor()!=color);
             moves.add(vert);
         }
