@@ -51,14 +51,27 @@ public class Piece {
     //return a list of every square that is "controlled" by this piece. A square is controlled
     //if the piece capture into it legally.
     public ArrayList<Square> getControlledSquares(Square[][] board, Square start) {
-        Square c;
         ArrayList<Square> cm = new ArrayList<Square>();
-        Piece currPiece=start.getOccupyingPiece();
-        
-        
+        for (int i=-1; i+start.getCol()>=0;i--){
+        Square horz=board[start.getRow()][start.getCol()+i];
+          cm.add(horz);
+        }
+        for (int i=-1; i+start.getRow()>=0;i--){
+          Square vert=board[start.getRow()+i][start.getCol()];
+          if (!vert.isOccupied());
+            cm.add(vert);
+        }
+        for (int i=1; i+start.getCol()<=7;i++){
+        Square horz=board[start.getRow()][start.getCol()+i];
+          cm.add(horz);
+        }
+        for (int i=1; i+start.getCol()<=7;i++){
+        Square vert=board[start.getRow()+i][start.getCol()];
+          cm.add(vert);
+        }
 
        
-     return null;
+     return cm;
     }
     
 
@@ -71,28 +84,45 @@ public class Piece {
     public ArrayList<Square> getLegalMoves(Board b, Square start){
        ArrayList<Square> moves = new ArrayList<Square>();
         //left
-        for (int i=0; i+start.getCol()>=0;i--){
+        for (int i=-1; i+start.getCol()>=0;i--){
           Square horz=b.getSquareArray()[start.getRow()][start.getCol()+i];
-          if (!horz.isOccupied() || horz.getOccupyingPiece().getColor()!=color);
+          if (!horz.isOccupied());
             moves.add(horz);
+          if (horz.isOccupied()&&horz.getOccupyingPiece().getColor()!=color){
+            moves.add(horz);
+            break;
+          }
         }
         //up
-        for (int i=0; i+start.getRow()>=0;i--){
+        for (int i=-1; i+start.getRow()>=0;i--){
           Square vert=b.getSquareArray()[start.getRow()+i][start.getCol()];
-          if (!vert.isOccupied() || vert.getOccupyingPiece().getColor()!=color);
+          if (!vert.isOccupied());
             moves.add(vert);
+            if (vert.isOccupied()&&vert.getOccupyingPiece().getColor()!=color){
+            moves.add(vert);
+            break;
+            }
         }
+    
         //right
-        for (int i=0; i+start.getCol()<=7;i++){
+        for (int i=1; i+start.getCol()<=7;i++){
           Square horz=b.getSquareArray()[start.getRow()][start.getCol()+i];
-          if (!horz.isOccupied() || horz.getOccupyingPiece().getColor()!=color);
+          if (!horz.isOccupied());
             moves.add(horz);
+            if (horz.isOccupied()&&horz.getOccupyingPiece().getColor()!=color){
+            moves.add(horz);
+            break;
+            }
         }
         //down
-        for (int i=0; i+start.getRow()<=7;i++){
+        for (int i=1; i+start.getRow()<=7;i++){
           Square vert=b.getSquareArray()[start.getRow()+i][start.getCol()];
-          if (!vert.isOccupied() || vert.getOccupyingPiece().getColor()!=color);
+          if (!vert.isOccupied());
             moves.add(vert);
+            if (vert.isOccupied()&&vert.getOccupyingPiece().getColor()!=color){
+            moves.add(vert);
+            break;
+            }
         }
          
     	return moves;
