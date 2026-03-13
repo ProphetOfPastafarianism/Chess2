@@ -54,23 +54,43 @@ public class Piece {
         ArrayList<Square> cm = new ArrayList<Square>();
         for (int i=-1; i+start.getCol()>=0;i--){
         Square horz=board[start.getRow()][start.getCol()+i];
-          cm.add(horz);
+        if (!horz.isOccupied()){
+            cm.add(horz);
+           }
+            else{
+              break;
+            }
         }
         for (int i=-1; i+start.getRow()>=0;i--){
           Square vert=board[start.getRow()+i][start.getCol()];
-          if (!vert.isOccupied());
+          if (!vert.isOccupied()){
             cm.add(vert);
+           }
+            else{
+              break;
+            }
         }
         for (int i=1; i+start.getCol()<=7;i++){
         Square horz=board[start.getRow()][start.getCol()+i];
-          cm.add(horz);
+          if (!horz.isOccupied()){
+            cm.add(horz);
+           }
+            else{
+              break;
+            }
         }
-        for (int i=1; i+start.getCol()<=7;i++){
+        for (int i=1; i+start.getRow()<=7;i++){
         Square vert=board[start.getRow()+i][start.getCol()];
-          cm.add(vert);
+          if (!vert.isOccupied()){
+            cm.add(vert);
+          }
+            else{
+              break;
+            }
+          
         }
 
-       
+    //System.out.println(cm);
      return cm;
     }
     
@@ -81,6 +101,8 @@ public class Piece {
     //returns an arraylist of squares which are legal to move to
     //please note that your piece must have some sort of logic. Just being able to move to every square on the board is not
     //going to score any points.
+
+    //IT MOVES LIKE A ROOK
     public ArrayList<Square> getLegalMoves(Board b, Square start){
        ArrayList<Square> moves = new ArrayList<Square>();
         //left
@@ -124,7 +146,7 @@ public class Piece {
             break;
             }
         }
-         
+      
     	return moves;
     }
 }
