@@ -50,6 +50,8 @@ public class Piece {
     // TO BE IMPLEMENTED!
     //return a list of every square that is "controlled" by this piece. A square is controlled
     //if the piece capture into it legally.
+
+    //prerequesites are that there must be a piece occupying the starting square and that there is a painted board for the game
     public ArrayList<Square> getControlledSquares(Square[][] board, Square start) {
         ArrayList<Square> cm = new ArrayList<Square>();
         for (int i=-1; i+start.getCol()>=0;i--){
@@ -103,6 +105,7 @@ public class Piece {
     //going to score any points.
 
     //IT MOVES LIKE A ROOK
+    //prerequesites are that there is a board painted and there is a painted piece on the start square
     public ArrayList<Square> getLegalMoves(Board b, Square start){
        ArrayList<Square> moves = new ArrayList<Square>();
         //left

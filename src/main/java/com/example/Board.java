@@ -204,6 +204,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     //use the pieces "legal move" function to determine if this move is legal, then complete it by
     //moving the new piece to it's new board location. 
     @Override
+    //mouse must be held down and holding a piece
     public void mouseReleased(MouseEvent e) {
         for(Square [] row: board){
             for(Square s: row){
