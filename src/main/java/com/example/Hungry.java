@@ -12,11 +12,10 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 
 //you will need to implement two functions in this file.
-public class Hungry {
-    private final boolean color;
-    private BufferedImage img;
+public class Hungry extends Piece {
     
     public Hungry(boolean isWhite, String img_file) {
+      super.Piece();
         this.color = isWhite;
          
         try {
