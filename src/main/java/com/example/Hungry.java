@@ -7,17 +7,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 
 //you will need to implement two functions in this file.
 public class Hungry extends Piece {
-    
+
     public Hungry(boolean isWhite, String img_file) {
-      super.Piece();
-        this.color = isWhite;
-         
+      super(isWhite, img_file);  
+    }
+    
         try {
             if (this.img == null) {
                 this.img = ImageIO.read(new File(System.getProperty("user.dir")+img_file));
@@ -25,25 +24,9 @@ public class Hungry extends Piece {
           } catch (IOException e) {
             System.out.println("File not found: " + e.getMessage());
           }
-    }
     
     
-
     
-    public boolean getColor() {
-        return color;
-    }
-    
-    public Image getImage() {
-        return img;
-    }
-    
-    public void draw(Graphics g, Square currentSquare) {
-        int x = currentSquare.getX();
-        int y = currentSquare.getY();
-        
-        g.drawImage(this.img, x, y, null);
-    }
     
     
     // TO BE IMPLEMENTED!
