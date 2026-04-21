@@ -46,7 +46,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     private boolean whiteTurn;
 
     //if the player is currently dragging a piece this variable contains it.
-    Hungry currPiece;
+    Piece currPiece;
     private Square fromMoveSquare;
     
     //used to keep track of the x/y coordinates of the mouse.
@@ -121,8 +121,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     	
             
             //puts stuff on the board
-    	board[5][7].put(new Hungry(true, RESOURCES_WKING_PNG));
-        board[5][5].put(new Hungry(false, RESOURCES_BKING_PNG));
+    	board[5][7].put(new Piece(true, RESOURCES_WKING_PNG));
+        board[5][5].put(new Piece(false, RESOURCES_BKING_PNG));
 
     }
     
@@ -134,11 +134,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         return whiteTurn;
     }
 
-    public void setCurrPiece(Hungry p) {
+    public void setCurrPiece(Piece p) {
         this.currPiece = p;
     }
 
-    public Hungry getCurrPiece() {
+    public Piece getCurrPiece() {
         return this.currPiece;
     }
 
@@ -199,6 +199,10 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         repaint();
     }
 
+
+    public boolean isInCheck(boolean color){
+        return true;
+    }
     //TO BE IMPLEMENTED!
     //should move the piece to the desired location only if this is a legal move.
     //use the pieces "legal move" function to determine if this move is legal, then complete it by
@@ -216,9 +220,16 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         //using currPiece
         if(fromMoveSquare!=null){
             if(currPiece!=null && currPiece.getLegalMoves(this,fromMoveSquare).contains(endSquare)){
+                Piece mistake= endSquare.getOccupyingPiece();
                 endSquare.put(currPiece);
                 fromMoveSquare.removePiece();
-               
+                if(isInCheck(whiteTurn)){
+                    fromMoveSquare.put(currPiece);
+                    endSquare.put(mistake);
+                }else {
+                whiteTurn = !whiteTurn;
+                }
+            whiteTurn = !whiteTurn;
             }
            fromMoveSquare.setDisplay(true);
         }

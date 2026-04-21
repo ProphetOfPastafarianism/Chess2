@@ -14,19 +14,17 @@ import javax.swing.BorderFactory;
 public class Hungry extends Piece {
 
     public Hungry(boolean isWhite, String img_file) {
-      super(isWhite, img_file);  
+      super(isWhite,img_file);  
+  
     }
     
-        try {
-            if (this.img == null) {
-                this.img = ImageIO.read(new File(System.getProperty("user.dir")+img_file));
-            }
-          } catch (IOException e) {
-            System.out.println("File not found: " + e.getMessage());
-          }
-    
-    
-    
+    public String toString() {
+    if (color){
+    return "white";
+    }else{
+    return "black";
+    }
+    }
     
     
     // TO BE IMPLEMENTED!
@@ -34,6 +32,7 @@ public class Hungry extends Piece {
     //if the piece capture into it legally.
 
     //prerequesites are that there must be a piece occupying the starting square and that there is a painted board for the game
+    @Override
     public ArrayList<Square> getControlledSquares(Square[][] board, Square start) {
         ArrayList<Square> cm = new ArrayList<Square>();
         for (int i=-1; i+start.getCol()>=0;i--){
@@ -88,6 +87,7 @@ public class Hungry extends Piece {
 
     //IT MOVES LIKE A ROOK
     //prerequesites are that there is a board painted and there is a painted piece on the start square
+    @Override
     public ArrayList<Square> getLegalMoves(Board b, Square start){
        ArrayList<Square> moves = new ArrayList<Square>();
         //left
