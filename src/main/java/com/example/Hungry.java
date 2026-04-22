@@ -14,8 +14,8 @@ import javax.swing.BorderFactory;
 public class Hungry extends Piece {
 
     public Hungry(boolean isWhite, String img_file) {
-      super(isWhite,img_file);  
-  
+      super(isWhite,img_file);
+     
     }
     
     public String toString() {
