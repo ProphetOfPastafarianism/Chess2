@@ -117,7 +117,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
 	//set up the board such that the black pieces are on one side and the white pieces are on the other.
 	//since we only have one kind of piece for now you need only set the same number of pieces on either side.
 	//it's up to you how you wish to arrange your pieces.
-    void initializePieces() {
+     void initializePieces() {
     	
             
             //puts stuff on the board
