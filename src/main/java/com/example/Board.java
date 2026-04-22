@@ -22,7 +22,7 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class Board extends JPanel implements MouseListener, MouseMotionListener {
 	// Resource location constants for piece images
-    private static final String path = "/src/main/java/com/example/Pictures/";
+    private static final String path = "/workspaces/chess2026/src/main/java/com/example/Pictures/";
     private static final String RESOURCES_WBISHOP_PNG = path+"wbishop.png";
 	private static final String RESOURCES_BBISHOP_PNG = path+"bbishop.png";
 	private static final String RESOURCES_WKNIGHT_PNG = path+"wknight.png";

@@ -2,6 +2,7 @@ package com.example;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public Piece(boolean color, String img_file) {
 this.color = color;
 try {
 if (this.img == null) {
-this.img = ImageIO.read(getClass().getResource(img_file));
+this.img = ImageIO.read(new File(img_file));
 }
 } catch (IOException e) {
 System.out.println("File not found: " + e.getMessage());

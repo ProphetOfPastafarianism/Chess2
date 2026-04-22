@@ -20,12 +20,9 @@ public class Hungry extends Piece {
     
     public String toString() {
     if (color){
-    return "white";
-    }else{
-    return "black";
+    return super.toString()+"Hungry";
     }
-    }
-    
+  }
     
     // TO BE IMPLEMENTED!
     //return a list of every square that is "controlled" by this piece. A square is controlled
