@@ -35,6 +35,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
 	private static final String RESOURCES_WQUEEN_PNG = path+"wqueen.png";
 	private static final String RESOURCES_WPAWN_PNG = path+"wpawn.png";
 	private static final String RESOURCES_BPAWN_PNG = path+"bpawn.png";
+    private static final String RESOURCES_WHUNGRY_PNG = path+"whungry.png";
+	private static final String RESOURCES_BHUNGRY_PNG = path+"bhungry.png";
 
     
 	
@@ -117,12 +119,42 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
 	//set up the board such that the black pieces are on one side and the white pieces are on the other.
 	//since we only have one kind of piece for now you need only set the same number of pieces on either side.
 	//it's up to you how you wish to arrange your pieces.
-     void initializePieces() {
+    void initializePieces() {
     	
             
             //puts stuff on the board
-    	board[5][7].put(new Piece(true, RESOURCES_WKING_PNG));
-        board[5][5].put(new Piece(false, RESOURCES_BKING_PNG));
+            //V  H
+    	board[7][7].put(new Hungry(false, RESOURCES_BHUNGRY_PNG));
+        board[7][0].put(new Hungry(true, RESOURCES_WHUNGRY_PNG));
+        board[0][0].put(new Hungry(true, RESOURCES_BKING_PNG));
+        board[0][7].put(new Hungry(true, RESOURCES_BKING_PNG));
+        board[7][6].put(new Knight(true, RESOURCES_WKNIGHT_PNG));
+        board[7][1].put(new Knight(true, RESOURCES_WKNIGHT_PNG));
+        board[0][6].put(new Knight(true, RESOURCES_BKNIGHT_PNG));
+        board[0][1].put(new Knight(true, RESOURCES_BKNIGHT_PNG));
+        board[7][5].put(new Bishop(true, RESOURCES_WBISHOP_PNG));
+        board[7][2].put(new Bishop(true, RESOURCES_WBISHOP_PNG));
+        board[0][5].put(new Bishop(true, RESOURCES_BBISHOP_PNG));
+        board[0][2].put(new Bishop(true, RESOURCES_BBISHOP_PNG));
+        int i=1;
+        int j=0;
+        while(i<=7){
+            while(j<=7){
+                board[i][j].put(new Pawn(true, RESOURCES_BPAWN_PNG));
+                j++;
+            }
+            i++;
+        }
+        int i2=6;
+        int j2=0;
+        while(i2<=7){
+            while(j2<=7){
+                board[i2][j2].put(new Pawn(true, RESOURCES_WPAWN_PNG));
+                j2++;
+            }
+            i2++;
+        }
+        
 
     }
     

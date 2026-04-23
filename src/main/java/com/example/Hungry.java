@@ -15,13 +15,11 @@ public class Hungry extends Piece {
 
     public Hungry(boolean isWhite, String img_file) {
       super(isWhite,img_file);
-     
     }
-    
+    @Override
     public String toString() {
-    if (color){
-    return super.toString()+"Hungry";
-    }
+    return "A"+super.toString()+"Hungry";
+  
   }
     
     // TO BE IMPLEMENTED!
