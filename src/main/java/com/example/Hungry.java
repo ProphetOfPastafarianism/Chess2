@@ -90,7 +90,7 @@ public class Hungry extends Piece {
           Square horz=b.getSquareArray()[start.getRow()][start.getCol()+i];
           if (!horz.isOccupied());
             moves.add(horz);
-          if (horz.isOccupied()&&horz.getOccupyingPiece().getColor()!=color){
+          if (horz.isOccupied()){
             moves.add(horz);
             break;
           }
@@ -100,7 +100,7 @@ public class Hungry extends Piece {
           Square vert=b.getSquareArray()[start.getRow()+i][start.getCol()];
           if (!vert.isOccupied());
             moves.add(vert);
-            if (vert.isOccupied()&&vert.getOccupyingPiece().getColor()!=color){
+            if (vert.isOccupied()){
             moves.add(vert);
             break;
             }
@@ -111,7 +111,7 @@ public class Hungry extends Piece {
           Square horz=b.getSquareArray()[start.getRow()][start.getCol()+i];
           if (!horz.isOccupied());
             moves.add(horz);
-            if (horz.isOccupied()&&horz.getOccupyingPiece().getColor()!=color){
+            if (horz.isOccupied()){
             moves.add(horz);
             break;
             }
@@ -121,7 +121,7 @@ public class Hungry extends Piece {
           Square vert=b.getSquareArray()[start.getRow()+i][start.getCol()];
           if (!vert.isOccupied());
             moves.add(vert);
-            if (vert.isOccupied()&&vert.getOccupyingPiece().getColor()!=color){
+            if (vert.isOccupied()){
             moves.add(vert);
             break;
             }

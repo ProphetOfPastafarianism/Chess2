@@ -124,23 +124,27 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
             
             //puts stuff on the board
             //V  H
-    	board[7][7].put(new Hungry(false, RESOURCES_BHUNGRY_PNG));
+    	board[7][7].put(new Hungry(true, RESOURCES_WHUNGRY_PNG));
         board[7][0].put(new Hungry(true, RESOURCES_WHUNGRY_PNG));
-        board[0][0].put(new Hungry(true, RESOURCES_BKING_PNG));
-        board[0][7].put(new Hungry(true, RESOURCES_BKING_PNG));
+        board[0][0].put(new Hungry(false, RESOURCES_BHUNGRY_PNG));
+        board[0][7].put(new Hungry(false, RESOURCES_BHUNGRY_PNG));
         board[7][6].put(new Knight(true, RESOURCES_WKNIGHT_PNG));
         board[7][1].put(new Knight(true, RESOURCES_WKNIGHT_PNG));
-        board[0][6].put(new Knight(true, RESOURCES_BKNIGHT_PNG));
-        board[0][1].put(new Knight(true, RESOURCES_BKNIGHT_PNG));
+        board[0][6].put(new Knight(false, RESOURCES_BKNIGHT_PNG));
+        board[0][1].put(new Knight(false, RESOURCES_BKNIGHT_PNG));
         board[7][5].put(new Bishop(true, RESOURCES_WBISHOP_PNG));
         board[7][2].put(new Bishop(true, RESOURCES_WBISHOP_PNG));
-        board[0][5].put(new Bishop(true, RESOURCES_BBISHOP_PNG));
-        board[0][2].put(new Bishop(true, RESOURCES_BBISHOP_PNG));
+        board[0][5].put(new Bishop(false, RESOURCES_BBISHOP_PNG));
+        board[0][2].put(new Bishop(false, RESOURCES_BBISHOP_PNG));
+        board[7][3].put(new Queen(true, RESOURCES_WQUEEN_PNG));
+        board[0][3].put(new Queen(false, RESOURCES_BQUEEN_PNG));
+        board[7][4].put(new King(true, RESOURCES_WKING_PNG));
+        board[0][4].put(new King(false, RESOURCES_BKING_PNG));
         int i=1;
         int j=0;
         while(i<=7){
             while(j<=7){
-                board[i][j].put(new Pawn(true, RESOURCES_BPAWN_PNG));
+                board[i][j].put(new Pawn(false, RESOURCES_BPAWN_PNG));
                 j++;
             }
             i++;
@@ -233,7 +237,34 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
 
 
     public boolean isInCheck(boolean color){
-        return true;
+        //loop through all the squares in your board
+        //ask each square "do you have a piece?" if yes "is that piece the OPPOSITE color as "color"?"
+        //take all of those pieces and loop through their controlled squares 
+        //ask each controlled square "do you contain a piece?" "is that piece intanceof King?" "is that king the right color?"
+        //if the answer is yes to all of the above you're in check!
+        //if that never happens 
+         
+         for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                ArrayList<Square> cm = new ArrayList<Square>();
+                Square sq = board[x][y];
+                if(sq.getOccupyingPiece()!=null){
+                    if(sq.getOccupyingPiece().getColor()!=color){
+                      cm=sq.getOccupyingPiece().getControlledSquares(board,sq);
+                        for(int i=0;i<=cm.size();i++){
+                            if(cm.get(i).getOccupyingPiece() instanceof King && cm.get(i).getOccupyingPiece().getColor()==color ){
+                                return true;
+                            }
+                        }
+                    }
+                }
+                	    
+                
+            }
+        }
+           
+           return false;
+
     }
     //TO BE IMPLEMENTED!
     //should move the piece to the desired location only if this is a legal move.
