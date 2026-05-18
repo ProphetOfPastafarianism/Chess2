@@ -22,7 +22,7 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class Board extends JPanel implements MouseListener, MouseMotionListener {
 	// Resource location constants for piece images
-    private static final String path = "/workspaces/chess2026/src/main/java/com/example/Pictures/";
+    private static final String path = "/workspaces/Chess2/src/main/java/com/example/Pictures/";
     private static final String RESOURCES_WBISHOP_PNG = path+"wbishop.png";
 	private static final String RESOURCES_BBISHOP_PNG = path+"bbishop.png";
 	private static final String RESOURCES_WKNIGHT_PNG = path+"wknight.png";
@@ -244,14 +244,14 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         //if the answer is yes to all of the above you're in check!
         //if that never happens 
          
-         for (int x = 0; x < 8; x++) {
-            for (int y = 0; y < 8; y++) {
+         for (int x = 0; x <= 7; x++) {
+            for (int y = 0; y <= 7; y++) {
                 ArrayList<Square> cm = new ArrayList<Square>();
                 Square sq = board[x][y];
                 if(sq.getOccupyingPiece()!=null){
                     if(sq.getOccupyingPiece().getColor()!=color){
                       cm=sq.getOccupyingPiece().getControlledSquares(board,sq);
-                        for(int i=0;i<=cm.size();i++){
+                        for(int i=0;i<cm.size();i++){
                             if(cm.get(i).getOccupyingPiece() instanceof King && cm.get(i).getOccupyingPiece().getColor()==color ){
                                 return true;
                             }
@@ -282,7 +282,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         
         //using currPiece
         if(fromMoveSquare!=null){
-            if(currPiece!=null && currPiece.getLegalMoves(this,fromMoveSquare).contains(endSquare)){
+            if(currPiece!=null && currPiece.getLegalMoves(this,fromMoveSquare).contains(endSquare)&& currPiece.getColor()==whiteTurn){
                 Piece mistake= endSquare.getOccupyingPiece();
                 endSquare.put(currPiece);
                 fromMoveSquare.removePiece();
@@ -290,14 +290,13 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
                     fromMoveSquare.put(currPiece);
                     endSquare.put(mistake);
                 }else {
-                whiteTurn = !whiteTurn;
+                    whiteTurn = !whiteTurn;
                 }
-            whiteTurn = !whiteTurn;
             }
            fromMoveSquare.setDisplay(true);
         }
        
-        
+        System.out.println(whiteTurn);
         currPiece = null;
         repaint();
     }
